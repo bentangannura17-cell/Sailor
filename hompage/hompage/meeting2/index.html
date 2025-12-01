@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Adventure - Speaking Practice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ✨ HOME BUTTON - TAMBAHKAN INI -->
+    <a href="../homepage.html" class="btn-home" title="Back to Map">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Back to Map</span>
+    </a>
+
+    <div class="container">
+        <div class="header">
+            <h1>🌊 Ocean Adventure 🚢</h1>
+            <p class="subtitle">Speaking Practice - Meeting 2</p>
+        </div>
+
+        <div class="progress-container">
+            <span class="progress-text">Slide <span id="currentSlide">1</span> of 7</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <span class="progress-text"><span id="percentage">14</span>%</span>
+        </div>
+
+        <div class="slide-container" id="slideContainer">
+            <!-- Slides will be populated by JavaScript -->
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-secondary" id="prevBtn" onclick="previousSlide()">← Previous</button>
+            <button class="btn reset-btn" id="resetBtn" onclick="resetCurrentSlide()" style="display:none;">🔄 Reset</button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextSlide()">Next →</button>
+        </div>
+
+        <div class="wave-decoration"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

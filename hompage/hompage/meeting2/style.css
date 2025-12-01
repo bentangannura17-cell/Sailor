@@ -1,0 +1,448 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    max-width: 1400px;
+    width: 100%;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.header .subtitle {
+    color: #7f8c8d;
+    font-size: 1.2em;
+}
+
+.progress-container {
+    background: #ecf0f1;
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 12px;
+    background: #bdc3c7;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 20px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1em;
+}
+
+.slide-container {
+    position: relative;
+    min-height: 600px;
+    max-height: 650px;
+    overflow-y: auto;
+}
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Layout 2 Kolom - Activity LEFT, Image RIGHT */
+.activity-column {
+    flex: 0 0 48%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 48%;
+}
+
+.image-column {
+    flex: 0 0 48%;
+    min-width: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 48%;
+}
+
+.comic-image {
+    width: 100%;
+    max-width: 100%;
+    max-height: 600px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    object-fit: contain;
+}
+
+.activity-section {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+    height: 100%;
+    max-height: 600px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-title {
+    color: #2c3e50;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.instructions {
+    text-align: center;
+    color: #34495e;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.dialogue-section {
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.dialogue-section:last-of-type {
+    margin-bottom: 10px;
+}
+
+.word-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 15px;
+    min-height: 80px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px dashed #bdc3c7;
+}
+
+.word {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: grab;
+    font-weight: bold;
+    font-size: 1.05em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    white-space: nowrap;
+}
+
+.word:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.word.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.dialogue-container {
+    margin-bottom: 20px;
+}
+
+.dialogue-label {
+    display: block;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    font-size: 1.15em;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+}
+
+.drop-zone {
+    background: white;
+    border: 3px dashed #3498db;
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+}
+
+.drop-zone.drag-over {
+    background: #e3f2fd;
+    border-color: #2196f3;
+    transform: scale(1.01);
+}
+
+.drop-zone .word {
+    cursor: grab;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.btn {
+    padding: 15px 35px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.reset-btn {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    color: #333;
+    padding: 10px 25px;
+    font-size: 1em;
+    align-self: center;
+}
+
+.message {
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 2px solid #c3e6cb;
+}
+
+.wave-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%234facfe" opacity="0.3"/></svg>') no-repeat bottom;
+    background-size: cover;
+    pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .slide.active {
+        flex-direction: column;
+    }
+
+    .activity-column {
+        order: 2;
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .image-column {
+        order: 1;
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .comic-image {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 1.8em;
+    }
+
+    .word {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .slide.active {
+        flex-direction: column;
+    }
+
+    .activity-section {
+        padding: 20px;
+    }
+}
+
+/* ==========================================
+   🏠 HOME BUTTON STYLES - MEETING 2
+   ========================================== */
+
+.btn-home {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 1000;
+    background: linear-gradient(to right, #3b82f6, #22d3ee);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-home:hover {
+    background: linear-gradient(to right, #2563eb, #0891b2);
+    box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-home .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* ==========================================
+   📱 MOBILE RESPONSIVE - HOME BUTTON
+   ========================================== */
+
+@media (max-width: 768px) {
+    .btn-home {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.625rem 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .btn-home .icon {
+        width: 1rem;
+        height: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .btn-home span {
+        display: none; /* Hide text on very small screens */
+    }
+}

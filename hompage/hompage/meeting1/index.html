@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Vocabulary Flashcard Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Home Button - Fixed Position -->
+    <a href="../homepage.html" class="btn-home" title="Back to Map">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+        <span>Back to Map</span>
+    </a>
+
+    <!-- Header -->
+    <div class="header-container">
+        <div class="header">
+            <div class="header-left">
+                <h1>🌊 Ocean Vocabulary</h1>
+                <p class="card-count">Card <span id="currentCard">1</span> of <span id="totalCards">10</span></p>
+            </div>
+            <div class="header-right">
+                <p class="score-label">Score</p>
+                <p class="score-value"><span id="score">0</span>/<span id="totalScore">10</span></p>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <!-- Main Card Container -->
+    <div class="main-container">
+        <div class="card-container" id="gameCard">
+            <!-- Left Side: Image -->
+            <div class="image-section">
+                <div class="image-placeholder">
+                    <img id="vocabularyImage" src="" alt="Vocabulary Image" style="display: none;">
+                    <div id="imagePlaceholder" class="placeholder-content">
+                        <div class="placeholder-icon">🖼️</div>
+                        <p class="placeholder-text">Place your image here:</p>
+                        <p class="placeholder-path" id="imagePath"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Flip Card Container -->
+            <div class="flip-card-container">
+                <div class="flip-card" id="flipCard">
+                    <!-- Front Side: Clues + Options -->
+                    <div class="flip-card-front">
+                        <!-- Clues Section -->
+                        <div class="clues-section">
+                            <div class="section-header">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                                <h2>Clues</h2>
+                            </div>
+                            <div class="clues-roller" id="cluesRoller">
+                                <div class="clues-list" id="cluesList"></div>
+                            </div>
+                            <button class="btn-show-more" id="showMoreBtn" style="display: none;">
+                                Next Clues (<span id="clueProgress">1/3</span>)
+                            </button>
+                        </div>
+
+                        <!-- Options Section -->
+                        <div class="options-section" id="optionsSection">
+                            <h3 class="options-title">Choose the correct answer:</h3>
+                            <div class="options-grid" id="optionsGrid"></div>
+                        </div>
+                    </div>
+
+                    <!-- Back Side: Result -->
+                    <div class="flip-card-back">
+                        <div class="result-section" id="resultSection">
+                            <div class="result-message" id="resultMessage"></div>
+
+                            <!-- Definition Section -->
+                            <div class="definition-section">
+                                <div class="definition-header">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                                    </svg>
+                                    <h4>Definition</h4>
+                                </div>
+                                <p class="definition-text" id="definitionText"></p>
+                                <p class="definition-indonesian" id="definitionIndonesian"></p>
+                            </div>
+
+                            <!-- Audio Section -->
+                            <div class="audio-section">
+                                <h3 class="audio-title">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                    </svg>
+                                    Practice Pronunciation
+                                </h3>
+                                <div class="audio-card">
+                                    <div class="pronunciation-text" id="pronunciationText"></div>
+                                    
+                                    <!-- Speed Controls -->
+                                    <div class="speed-controls">
+                                        <button class="btn-speed" id="slowSpeedBtn">
+                                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                            </svg>
+                                            Slow
+                                        </button>
+                                        <button class="btn-speed active" id="normalSpeedBtn">
+                                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                            </svg>
+                                            Normal
+                                        </button>
+                                    </div>
+
+                                    <button class="btn-audio" id="playAudioBtn">
+                                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                        </svg>
+                                        Listen & Repeat
+                                    </button>
+                                    <audio id="vocabularyAudio" src=""></audio>
+                                    <p class="audio-path" id="audioPath"></p>
+                                </div>
+                                <p class="audio-instruction">Click the button and repeat the word to improve your pronunciation! 🎤</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Button - ALWAYS VISIBLE, OUTSIDE flip card -->
+                <button class="btn-next" id="nextBtn" style="display: none;">
+                    <span id="nextBtnText">Next Card</span>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Completion Screen -->
+        <div class="completion-screen" id="completionScreen" style="display: none;">
+            <div class="completion-icon">🏆</div>
+            <h2 class="completion-title">Congratulations!</h2>
+            <p class="completion-score">Your Score: <span id="finalScore">0/10</span></p>
+            <div class="completion-progress">
+                <div class="completion-progress-fill" id="completionProgressFill"></div>
+            </div>
+            <p class="completion-message" id="completionMessage"></p>
+
+            <!-- Review Wrong Answers Section -->
+            <div class="review-section" id="reviewSection" style="display: none;">
+                <h3 class="review-title">❌ Words You Missed:</h3>
+                <div class="review-list" id="reviewList"></div>
+                <button class="btn-review" id="reviewBtn">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Review Wrong Answers
+                </button>
+            </div>
+
+            <div class="completion-buttons">
+                <button class="btn-restart" id="restartBtn">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="1 4 1 10 7 10"></polyline>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                    </svg>
+                    Play Again
+                </button>
+                
+                <a href="../homepage.html" class="btn-back-home">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Back to Map
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>🌊 Learn ocean vocabulary • Practice pronunciation • Have fun! 🐢</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

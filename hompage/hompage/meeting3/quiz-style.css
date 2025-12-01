@@ -1,0 +1,104 @@
+/* Reset and Base Styles */
+body {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Focus outline for accessibility */
+:focus-visible {
+  outline: 3px solid #facc15;
+  outline-offset: 2px;
+}
+
+/* View transition for smooth navigation */
+@view-transition {
+  navigation: auto;
+}
+
+/* Additional styling for better appearance */
+* {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Word chip hover effects */
+.word-chip:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.word-chip.ring-2 {
+  ring: 2px;
+  ring-offset: 2px;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #eab308;
+}
+
+/* Vocab drop button styles */
+.vocab-drop {
+  transition: all 0.2s ease;
+}
+
+.vocab-drop:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(15, 23, 42, 0.5);
+}
+
+/* Order button styles */
+.order-btn {
+  transition: all 0.2s ease;
+}
+
+.order-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Smooth animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+article {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  button:hover {
+    transform: none;
+  }
+  
+  .word-chip:hover {
+    transform: none;
+  }
+  
+  .order-btn:hover {
+    transform: none;
+  }
+}
