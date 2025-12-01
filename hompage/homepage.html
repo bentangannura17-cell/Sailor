@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sailor's Journey - Ocean Learning Adventure</title>
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+    <!-- Animated Waves Background -->
+    <div class="waves">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+    </div>
+
+    <!-- Floating Clouds -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+
+    <!-- Info Button -->
+    <button class="info-button" onclick="openInfoModal()">ℹ️</button>
+
+    <!-- Info Modal -->
+    <div class="info-modal" id="infoModal">
+        <div class="info-content">
+            <button class="close-modal" onclick="closeInfoModal()">×</button>
+            <h2>🌊 Welcome to The Sailor's Journey!</h2>
+            <p>Join Lian on an exciting ocean adventure! Click on each island to explore different activities:</p>
+            <p><strong>🏝️ Island 1:</strong> Learn ocean vocabulary through interactive flashcards</p>
+            <p><strong>🏝️ Island 2:</strong> Read guided ocean comics and stories</p>
+            <p><strong>🏝️ Island 3:</strong> Create your own ocean adventures</p>
+            <p>Complete each activity to earn checkmarks! Have fun learning! 🚢</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>🌊 The Sailor's Journey</h1>
+        <p>Explore the Ocean, Learn, and Have Fun!</p>
+    </header>
+
+    <!-- Map Container -->
+    <div class="map-container">
+        <!-- Sailing Ship -->
+        <div class="ship">
+            <img src="ship.png" alt="Sailing Ship" onerror="this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>🚢</div>'">
+        </div>
+
+        <!-- Islands Wrapper -->
+        <div class="islands-wrapper">
+            <!-- Main Island 1 - Vocabulary Game (Mountain Island) -->
+            <div class="island-container" id="island-1" onclick="navigateToMeeting(1)">
+                <img src="island1.png" alt="Island 1" class="island-image">
+                <div class="island-label">
+                    <div class="island-label-icon">📚</div>
+                    <div class="island-label-title">Vocabulary Island</div>
+                    <div class="island-label-subtitle">Learn Ocean Words</div>
+                </div>
+                <div class="status-badge" id="status-1"></div>
+            </div>
+
+            <!-- Main Island 2 - Guided Comic (Crater Island) -->
+            <div class="island-container" id="island-2" onclick="navigateToMeeting(2)">
+                <img src="island2.png" alt="Island 2" class="island-image">
+                <div class="island-label">
+                    <div class="island-label-icon">💬</div>
+                    <div class="island-label-title">Story Island</div>
+                    <div class="island-label-subtitle">Read Ocean Tales</div>
+                </div>
+                <div class="status-badge" id="status-2"></div>
+            </div>
+
+            <!-- Main Island 3 - Independent Comic (Forest Island) -->
+            <div class="island-container" id="island-3" onclick="navigateToMeeting(3)">
+                <img src="island3.png" alt="Island 3" class="island-image">
+                <div class="island-label">
+                    <div class="island-label-icon">🎯</div>
+                    <div class="island-label-title">Adventure Island</div>
+                    <div class="island-label-subtitle">Create Your Story</div>
+                </div>
+                <div class="status-badge" id="status-3"></div>
+            </div>
+
+            <!-- Decorative Small Islands -->
+            <div class="small-island small-1">
+                <img src="island4.png" alt="Small Island">
+            </div>
+            <div class="small-island small-2">
+                <img src="island5.png" alt="Small Island">
+            </div>
+            <div class="small-island small-3">
+                <img src="island6.png" alt="Small Island">
+            </div>
+            <div class="small-island small-4">
+                <img src="island7.png" alt="Small Island">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>🌊 Set sail and discover the wonders of the ocean! 🚢</p>
+    </footer>
+
+    <script src="homepage.js"></script>
+</body>
+</html>
